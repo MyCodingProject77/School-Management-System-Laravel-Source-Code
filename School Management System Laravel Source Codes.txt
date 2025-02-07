@@ -1,0 +1,503 @@
+
+
+
+    home.blade.php code
+
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for Banner */
+        .banner {
+            background: url('{{ asset("images/librarybanner.jpg") }}') no-repeat center center;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">Xavier School</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/students') }}">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/courses') }}">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/enrolls') }}">Librarian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/enrolls') }}">Borrowing</a>
+                    </li>
+                </ul>
+                <div>
+                    <a href="{{ route('logout') }}" class="btn btn-outline-light"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <!-- Banner Section -->
+    <div class="banner">
+        
+    </div>
+
+    <!-- Cards Section -->
+    <div class="container card-container mt-4">
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                <img src="{{ asset('images/student.jpg') }}" class="card-img-top" alt="Card 1">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Students</h5>
+                        <p class="card-text">Manage all student information efficiently and with ease.</p>
+                        <a href="{{ route('students') }}" class="btn btn-primary">Student</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ asset('images/course.jpg') }}" class="card-img-top" alt="Card 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Books</h5>
+                        <p class="card-text">Browse and manage courses offered by your organization.</p>
+                        <a href="{{ url('/courses') }}" class="btn btn-primary">Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{{ asset('images/customer3.jpg') }}" class="card-img-top" alt="Card 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Librarian</h5>
+                        <p class="card-text">Track and manage student enrollments seamlessly.</p>
+                        <a href="{{ url('/enrolls') }}" class="btn btn-primary">Enroll</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 class="text-center">Explore Our Features</h2>
+        <p class="text-center">Use the navigation menu to explore Students, Courses, and Enrollments.</p>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">© 2024 Xavier School</p>
+    </footer>
+
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+    
+
+
+
+
+
+     layout.blade.php code
+
+
+     
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'School Management')</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">Xavier School</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/students') }}">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/courses') }}">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/enrolls') }}">Enrollment</a>
+                    </li>
+                </ul>
+                <div>
+                    <a href="{{ route('logout') }}" class="btn btn-outline-light"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        @yield('content')
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+   dashboard.blade.php code
+
+
+    <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+
+
+
+
+    students
+
+
+    index.blade.php code
+
+     
+     @extends('layout')
+
+@section('content')
+<div class="container mt-5">
+    <h2>Student List</h2>
+    <a href="{{ route('students.create') }}" class="btn btn-primary mb-3">Add Student</a>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">{{ $message }}</div>
+    @endif
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Dob</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($students as $student)
+                <tr>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->phone }}</td>
+                    <td>{{ $student->dob }}</td>
+                    
+                    <td>
+                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection
+
+
+
+
+
+      create.blade.php
+
+       @extends('layout')
+
+@section('content')
+<div class="container mt-5">
+    <h2>Add Student</h2>
+    <form action="{{ route('students.store') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="dob">Dob</label>
+            <input type="date" name="dob" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+    </form>
+</div>
+@endsection
+
+
+
+
+   edit.blade.php
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Edit Student</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('students.update', $student->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" name="name" value="{{ $student->name }}" class="form-control" placeholder="Enter Name" required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" value="{{ $student->email }}" class="form-control" placeholder="Enter Email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone:</label>
+                        <input type="text" id="phone" name="phone" value="{{ $student->phone }}" class="form-control" placeholder="Enter Phone" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Dob:</label>
+                        <input type="date" id="dob" name="dob" value="{{ $student->dob }}" class="form-control" required>
+                    </div>
+
+                    
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">Update Student</button>
+                        <a href="{{ route('students.index') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+   enrollments
+
+
+   index.blade.php
+
+   @extends('layout')
+
+@section('content')
+<div class="container mt-5">
+    <h2>Enrollment List</h2>
+    <a href="{{ route('enrolls.create') }}" class="btn btn-primary mb-3">Add Enrollment</a>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">{{ $message }}</div>
+    @endif
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>EnrollDate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($enrolls as $enroll)
+                <tr>
+                    <td>{{ $enroll->name }}</td>
+                    <td>{{ $enroll->course }}</td>
+                    <td>{{ $enroll->enrolldate }}</td>
+                    
+                    <td>
+                        <a href="{{ route('enrolls.edit', $enroll->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('enrolls.destroy', $enroll->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection
+
+
+
+
+    create.blade.php
+
+     @extends('layout')
+
+@section('content')
+<div class="container mt-5">
+    <h2>Add Enrollment</h2>
+    <form action="{{ route('enrolls.store') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" name="course" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="enrolldate">EnrollDate</label>
+            <input type="date" name="enrolldate" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+    </form>
+</div>
+@endsection
+
+
+
+
+    edit.blade.php
+
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Enrollment</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Edit Enrollment</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('enrolls.update', $enroll->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" name="name" value="{{ $enroll->name }}" class="form-control" placeholder="Enter Name" required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="course" class="form-label">Course:</label>
+                        <input type="text" id="course" name="course" value="{{ $enroll->course }}" class="form-control" placeholder="Enter Course" required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="enrolldate" class="form-label">EnrollDate:</label>
+                        <input type="date" id="enrolldate" name="enrolldate" value="{{ $enroll->enrolldate }}" class="form-control" required>
+                    </div>
+
+                    
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">Update Enrollment</button>
+                        <a href="{{ route('enrolls.index') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+     
